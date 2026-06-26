@@ -36,30 +36,70 @@ android:orientation="horizontal">
         tools:layout_editor_absoluteX="157dp"
         tools:layout_editor_absoluteY="68dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perfil"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
         <Button
             android:id="@+id/perfiljogador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Editar perfil" />
 
-        <Switch
-            android:id="@+id/switchSound"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Som ligado" />
+            android:text="Detalhes"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
 
         <Switch
             android:id="@+id/switchDifficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Modo difícil" />
+            android:text="Modo difícil"
+            android:textColor="@color/white"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visualizaçao"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sonoro"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+        <Switch
+            android:id="@+id/switchSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Msica ligada"
+            android:textColor="@color/white"/>
+
+        <Switch
+            android:id="@+id/switchSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Efeitos sonoros ligados"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/resetConfig"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Restaurar configuraçoes padrao" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
