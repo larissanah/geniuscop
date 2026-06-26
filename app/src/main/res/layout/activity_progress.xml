@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:background="#4CAF50"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundgenius"
+    android:gravity="center"
+    android:orientation="horizontal">
 
     <Button
         android:id="@+id/voltar"
+        android:layout_width="70dp"
+        android:layout_height="51dp"
+        android:backgroundTint="#2196F3"
         android:gravity="top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:icon="?attr/homeAsUpIndicator" />
 
     <TextView
         android:id="@+id/txtProgressTitle"
-        android:text="Progresso do Usuário"
-        android:textSize="24sp"
-        android:layout_margin="16dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Progresso"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="103dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <ImageView
         android:id="@+id/graph"
-        android:layout_width="500dp"
-        android:layout_height="300dp"
-        android:layout_margin="32dp"/>
-</LinearLayout>
+        android:layout_width="427dp"
+        android:layout_height="251dp"
+        android:layout_margin="32dp"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="69dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 

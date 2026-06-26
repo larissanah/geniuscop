@@ -3,52 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gemini_generated_image_fgafgdfgafgdfgaf"
+    android:background="@drawable/larie"
     android:padding="24dp">
 
-    <TextView
-        android:id="@+id/txtTitle"
+    <Button
+        android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Genius Game"
-        android:textColor="@color/white"
-        android:textSize="32sp"
-        android:textStyle="bold"
+        android:layout_marginTop="156dp"
+        android:backgroundTint="#0455EC"
+        android:text="Iniciar"
+        android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnStart"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Iniciar Jogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtTitle" />
-
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btnSettings"
-        style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#2196F3"
         android:text="Configurações"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnStart" />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btnProgress"
-        style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:text="Progresso"
         android:textColor="@color/white"
+        android:backgroundTint="#2196F3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnSettings" />

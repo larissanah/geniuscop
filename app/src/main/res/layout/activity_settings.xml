@@ -1,46 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#2196F3">
-
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/backgroundgenius"
+android:gravity="center"
+android:orientation="horizontal">
 
     <Button
         android:id="@+id/voltar"
+        android:layout_width="70dp"
+        android:layout_height="51dp"
+        android:backgroundTint="#2196F3"
         android:gravity="top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:icon="?attr/homeAsUpIndicator" />
 
     <TextView
-        android:id="@+id/txtSettingsTitle"
-        android:text="Configurações"
-        android:textSize="24sp"
-        android:layout_margin="16dp"
+        android:id="@+id/txtConfigTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Configuraçes"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="103dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <LinearLayout
+        android:layout_width="417dp"
+        android:layout_height="296dp"
+        android:layout_margin="32dp"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="32dp">
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="68dp">
+
+        <Button
+            android:id="@+id/perfiljogador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar perfil" />
 
         <Switch
             android:id="@+id/switchSound"
-            android:text="Som ligado"
-            android:checked="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Som ligado" />
 
         <Switch
             android:id="@+id/switchDifficulty"
-            android:text="Modo difícil"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-</LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="Modo difícil" />
 
+        <Button
+            android:id="@+id/resetConfig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Restaurar configuraçoes padrao" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
