@@ -1,16 +1,17 @@
 package com.example.geniuscop
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.geniuscop.databinding.ActivityGameBinding
-import kotlin.random.Random
 import kotlinx.coroutines.*
 
 class GameActivity : AppCompatActivity() {
+    private var mediaPlayer1: MediaPlayer? = null
+    private var mediaPlayer2: MediaPlayer? = null
+    private var mediaPlayer3: MediaPlayer? = null
+    private var mediaPlayer4: MediaPlayer? = null
     private lateinit var binding: ActivityGameBinding
     private val sequence = mutableListOf<Int>()
     private val playerMoves = mutableListOf<Int>()
@@ -21,19 +22,56 @@ class GameActivity : AppCompatActivity() {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        mediaPlayer1 = MediaPlayer.create(this, R.raw.meow)
+        mediaPlayer2 = MediaPlayer.create(this, R.raw.meow)
+        mediaPlayer3 = MediaPlayer.create(this, R.raw.meow)
+        mediaPlayer4 = MediaPlayer.create(this, R.raw.meow)
+
         binding.btnStartRound.setOnClickListener {
             startGame()
         }
 
-        binding.buttongreen.setOnClickListener { playerClick(0) }
-        binding.buttonred.setOnClickListener { playerClick(1) }
-        binding.buttonyellow.setOnClickListener { playerClick(2) }
-        binding.buttonblue.setOnClickListener { playerClick(3) }
+        binding.buttongreen.setOnClickListener {
+            try {
+                mediaPlayer1?.start()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            playerClick(0) }
+        binding.buttonred.setOnClickListener {
+            try {
+                mediaPlayer2?.start()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            playerClick(1) }
+        binding.buttonyellow.setOnClickListener {
+            try {
+                mediaPlayer3?.start()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            playerClick(2) }
+        binding.buttonblue.setOnClickListener {
+            try {
+                mediaPlayer4?.start()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            playerClick(3) }
 
         binding.voltar.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer1?.release()
+        mediaPlayer2?.release()
+        mediaPlayer3?.release()
+        mediaPlayer4?.release()
     }
 
     fun showSequenceCoroutine() {

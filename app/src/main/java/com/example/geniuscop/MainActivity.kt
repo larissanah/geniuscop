@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnProgress.setOnClickListener {
             startActivity(Intent(this, ProgressActivity::class.java))
         }
+        binding.btnHelp.setOnClickListener {
+            startActivity(Intent(this, HelpActivity::class.java))
+        }
     }
 }
 

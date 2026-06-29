@@ -1,61 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/jogofundo">
+    android:background="@drawable/genius3"
+    android:orientation="horizontal">
 
     <!-- Lado esquerdo: nível e botão -->
 
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="174dp"
         android:layout_height="match_parent"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/voltar"
+            android:layout_width="70dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#2196F3"
             android:gravity="top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon="?attr/homeAsUpIndicator" />
+            app:icon="?attr/homeAsUpIndicator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:text="Nível 1"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btnStartRound"
-            android:text="Iniciar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="Começar" />
     </LinearLayout>
 
     <!-- Lado direito: tabuleiro Genius -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:orientation="vertical"
-        android:layout_marginBottom="20dp">
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/buttongreen"
-            android:layout_width="258dp"
-            android:layout_height="195dp"
+            android:layout_width="164dp"
+            android:layout_height="211dp"
             android:clickable="true"
             app:srcCompat="@drawable/botaoverde" />
 
         <ImageView
             android:id="@+id/buttonyellow"
-            android:layout_width="239dp"
-            android:layout_height="193dp"
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
             android:clickable="true"
             app:srcCompat="@drawable/botaoamar" />
     </LinearLayout>
@@ -63,21 +68,21 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:orientation="vertical"
-        android:layout_marginBottom="20dp">
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/buttonred"
-            android:layout_width="220dp"
-            android:layout_height="198dp"
+            android:layout_width="match_parent"
+            android:layout_height="204dp"
             android:clickable="true"
             app:srcCompat="@drawable/botaoverm" />
 
         <ImageView
             android:id="@+id/buttonblue"
-            android:layout_width="220dp"
-            android:layout_height="188dp"
+            android:layout_width="149dp"
+            android:layout_height="183dp"
             android:clickable="true"
             app:srcCompat="@drawable/botaoazul" />
     </LinearLayout>
