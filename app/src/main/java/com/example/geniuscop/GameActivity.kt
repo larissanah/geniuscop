@@ -4,8 +4,15 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
+import com.example.geniuscop.database.SequenceDao
 import com.example.geniuscop.databinding.ActivityGameBinding
 import kotlinx.coroutines.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlin.jvm.java
+import kotlin.reflect.KClass
+
 
 class GameActivity : AppCompatActivity() {
     private var mediaPlayer1: MediaPlayer? = null
@@ -15,12 +22,20 @@ class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
     private val sequence = mutableListOf<Int>()
     private val playerMoves = mutableListOf<Int>()
+    private lateinit var sequenceDao: SequenceDao
     var round = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java,
+            "meu-banco"
+        ).build()
+        sequenceDao = db.sequenceDao()
 
         mediaPlayer1 = MediaPlayer.create(this, R.raw.meow)
         mediaPlayer2 = MediaPlayer.create(this, R.raw.meow)
@@ -64,6 +79,16 @@ class GameActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
+    }
+
+    private fun finalizarPartida(acertos: Int){
+        GlobalScope.launch {
+            val partida = Partida(
+                acertos = acertos,
+                data = System.currentTimeMillis()
+            )
+            sequenceDao.inserir(partida)
+        }
     }
 
     override fun onDestroy() {

@@ -33,13 +33,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/voltar" />
 
-    <com.github.mikephil.charting.charts.BarChart
+    <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/graph"
         android:layout_width="427dp"
         android:layout_height="251dp"
-        android:layout_margin="32dp"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="69dp" />
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="80dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
