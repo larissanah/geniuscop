@@ -29,6 +29,9 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val intent = Intent(this, MusicService::class.java)
+        stopService(intent)
+
 
         val db = Room.databaseBuilder(
             applicationContext,
@@ -85,7 +88,6 @@ class GameActivity : AppCompatActivity() {
         }
 
     }
-
     private fun finalizarPartida(acertos: Int){
         lifecycleScope.launch {
             val partida = Partida(
