@@ -1,6 +1,5 @@
 package com.example.geniuscop
 
-
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

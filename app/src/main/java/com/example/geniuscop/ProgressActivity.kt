@@ -3,49 +3,57 @@ package com.example.geniuscop
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
-import com.example.geniuscop.database.SequenceDao
+import com.example.geniuscop.database.PartidaDao
 import com.example.geniuscop.databinding.ActivityProgressBinding
+import com.github.mikephil.charting.charts.LineChart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.jvm.java
-import kotlin.collections.Map.Entry
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 
 
 class ProgressActivity : AppCompatActivity() {
-    private lateinit var sequenceDao: SequenceDao
+    private lateinit var partidaDao: PartidaDao
     private lateinit var binding: ActivityProgressBinding
+    private lateinit var chart: LineChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityProgressBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_progress)
+
+        chart = findViewById<LineChart>(R.id.graph)
 
         val db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java,
             "meu-banco"
         ).build()
-        sequenceDao = db.sequenceDao()
+        partidaDao = db.partidaDao()
 
-        GlobalScope.launch {
-            val partidas = sequenceDao.getTodasPartidas()
+        lifecycleScope.launch {
+            val partidas = partidaDao.getTodasPartidas()
             val entries = partidas.mapIndexed { index, partida ->
                 Entry(index.toFloat(), partida.acertos.toFloat())
             }
 
-            val dataSet = LineDataSet(entries, "Sequencia de acertos")
+            val dataSet = LineDataSet(entries, "Sequencia de acertos").apply {
+                color = android.graphics.Color.BLUE
+                valueTextColor = android.graphics.Color.BLACK
+                lineWidth = 2f
+                circleRadius = 4f
+            }
             val lineData = LineData(dataSet)
 
             withContext(Dispatchers.Main){
-                binding.graph.data = lineData
-                binding.graph.invalidate()
+                chart.data = lineData
+                chart.description.text = "Progresso do paciente"
+                chart.invalidate()
             }
         }
 

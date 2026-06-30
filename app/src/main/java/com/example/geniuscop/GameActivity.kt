@@ -4,14 +4,14 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
-import com.example.geniuscop.database.SequenceDao
+import com.example.geniuscop.database.PartidaDao
 import com.example.geniuscop.databinding.ActivityGameBinding
 import kotlinx.coroutines.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.jvm.java
-import kotlin.reflect.KClass
 
 
 class GameActivity : AppCompatActivity() {
@@ -22,7 +22,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
     private val sequence = mutableListOf<Int>()
     private val playerMoves = mutableListOf<Int>()
-    private lateinit var sequenceDao: SequenceDao
+    private lateinit var partidaDao: PartidaDao
     var round = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +35,7 @@ class GameActivity : AppCompatActivity() {
             AppDatabase::class.java,
             "meu-banco"
         ).build()
-        sequenceDao = db.sequenceDao()
+        partidaDao = db.partidaDao()
 
         mediaPlayer1 = MediaPlayer.create(this, R.raw.meow)
         mediaPlayer2 = MediaPlayer.create(this, R.raw.meow)
@@ -47,6 +47,7 @@ class GameActivity : AppCompatActivity() {
         }
 
         binding.buttongreen.setOnClickListener {
+            binding.buttongreen.alpha = 0.5f
             try {
                 mediaPlayer1?.start()
             } catch (e: Exception) {
@@ -54,6 +55,7 @@ class GameActivity : AppCompatActivity() {
             }
             playerClick(0) }
         binding.buttonred.setOnClickListener {
+            binding.buttonred.alpha = 0.5f
             try {
                 mediaPlayer2?.start()
             } catch (e: Exception) {
@@ -61,6 +63,7 @@ class GameActivity : AppCompatActivity() {
             }
             playerClick(1) }
         binding.buttonyellow.setOnClickListener {
+            binding.buttonyellow.alpha = 0.5f
             try {
                 mediaPlayer3?.start()
             } catch (e: Exception) {
@@ -68,6 +71,7 @@ class GameActivity : AppCompatActivity() {
             }
             playerClick(2) }
         binding.buttonblue.setOnClickListener {
+            binding.buttonblue.alpha = 0.5f
             try {
                 mediaPlayer4?.start()
             } catch (e: Exception) {
@@ -76,18 +80,19 @@ class GameActivity : AppCompatActivity() {
             playerClick(3) }
 
         binding.voltar.setOnClickListener {
+
             startActivity(Intent(this, MainActivity::class.java))
         }
 
     }
 
     private fun finalizarPartida(acertos: Int){
-        GlobalScope.launch {
+        lifecycleScope.launch {
             val partida = Partida(
-                acertos = acertos,
+               acertos = round,
                 data = System.currentTimeMillis()
             )
-            sequenceDao.inserir(partida)
+            partidaDao.inserir(partida)
         }
     }
 
@@ -100,7 +105,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun showSequenceCoroutine() {
-        GlobalScope.launch(Dispatchers.Main) {
+        lifecycleScope.launch(Dispatchers.Main) {
             for (color in sequence) {
                 when(color) {
                     0 -> binding.buttongreen.alpha = 0.5f
@@ -147,5 +152,6 @@ class GameActivity : AppCompatActivity() {
     fun gameOver() {
         binding.txtLevel.text = "Fim de jogo! Pontuação: $round"
         binding.btnStartRound.isEnabled = true
+        finalizarPartida(round)
     }
 }

@@ -2,7 +2,7 @@ package com.example.geniuscop
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.geniuscop.database.SequenceDao
+import com.example.geniuscop.database.PartidaDao
 
 @Database(
     entities = [Partida::class], // lista de entidades (tabelas)
@@ -10,5 +10,5 @@ import com.example.geniuscop.database.SequenceDao
     exportSchema = false         // evita gerar arquivos de esquema
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun sequenceDao(): SequenceDao
+    abstract fun partidaDao(): PartidaDao
 }
