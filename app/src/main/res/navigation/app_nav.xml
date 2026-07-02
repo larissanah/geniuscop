@@ -3,16 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav"
-    app:startDestination="@id/authActivity">
+    app:startDestination="@id/registerActivity">
 
-    <activity
-        android:id="@+id/authActivity"
-        android:name="com.example.geniuscop.AuthActivity"
-        android:label="AuthActivity" />
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.geniuscop.MainActivity"
-        android:label="MainActivity" />
     <activity
         android:id="@+id/gameActivity"
         android:name="com.example.geniuscop.GameActivity"
@@ -29,9 +21,17 @@
         android:id="@+id/settingsActivity"
         android:name="com.example.geniuscop.SettingsActivity"
         android:label="SettingsActivity" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.geniuscop.ui.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.geniuscop.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/registerActivity"
+        android:name="com.example.geniuscop.RegisterActivity"
+        android:label="RegisterActivity" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.geniuscop.MainActivity"
+        android:label="MainActivity" />
 </navigation>
