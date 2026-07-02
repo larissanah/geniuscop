@@ -13,6 +13,8 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val intent = Intent(this, MusicService::class.java)
+        startService(intent)
         binding.voltar.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }

@@ -26,6 +26,8 @@ class ProgressActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_progress)
+        val intent = Intent(this, MusicService::class.java)
+        startService(intent)
 
         chart = findViewById<LineChart>(R.id.graph)
 

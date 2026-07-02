@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/authActivity">
+
+    <activity
+        android:id="@+id/authActivity"
+        android:name="com.example.geniuscop.AuthActivity"
+        android:label="AuthActivity" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.geniuscop.MainActivity"
+        android:label="MainActivity" />
+    <activity
+        android:id="@+id/gameActivity"
+        android:name="com.example.geniuscop.GameActivity"
+        android:label="GameActivity" />
+    <activity
+        android:id="@+id/progressActivity"
+        android:name="com.example.geniuscop.ProgressActivity"
+        android:label="ProgressActivity" />
+    <activity
+        android:id="@+id/helpActivity"
+        android:name="com.example.geniuscop.HelpActivity"
+        android:label="HelpActivity" />
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.example.geniuscop.SettingsActivity"
+        android:label="SettingsActivity" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.geniuscop.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+</navigation>

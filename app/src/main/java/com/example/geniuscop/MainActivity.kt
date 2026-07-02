@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val intent = Intent(this, MusicService::class.java)
+        startService(intent)
+
         binding.btnStart.setOnClickListener {
             startActivity(Intent(this, GameActivity::class.java))
         }

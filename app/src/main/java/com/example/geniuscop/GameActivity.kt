@@ -40,10 +40,10 @@ class GameActivity : AppCompatActivity() {
         ).build()
         partidaDao = db.partidaDao()
 
-        mediaPlayer1 = MediaPlayer.create(this, R.raw.meow)
-        mediaPlayer2 = MediaPlayer.create(this, R.raw.meow)
-        mediaPlayer3 = MediaPlayer.create(this, R.raw.meow)
-        mediaPlayer4 = MediaPlayer.create(this, R.raw.meow)
+        mediaPlayer1 = MediaPlayer.create(this, R.raw.taiko)
+        mediaPlayer2 = MediaPlayer.create(this, R.raw.efect)
+        mediaPlayer3 = MediaPlayer.create(this, R.raw.orch)
+        mediaPlayer4 = MediaPlayer.create(this, R.raw.free)
 
         binding.btnStartRound.setOnClickListener {
             startGame()
