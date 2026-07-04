@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/genius1"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:context=".HelpActivity">
 
     <Button
         android:id="@+id/voltar"
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="10dp"
-        android:text="Tutorial"
+        android:text="@string/tutorial"
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"

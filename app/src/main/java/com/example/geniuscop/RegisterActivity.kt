@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.geniuscop.databinding.ActivityGameBinding
 import com.example.geniuscop.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -35,6 +34,7 @@ class RegisterActivity : AppCompatActivity() {
                         if (it.isSuccessful){
                             val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)
+                            finish()
                         }else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
@@ -48,4 +48,13 @@ class RegisterActivity : AppCompatActivity() {
         }
 
     }
+    override fun onStart() {
+        super.onStart()
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
+
 }

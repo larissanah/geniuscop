@@ -32,14 +32,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
-            android:text="Nível 1"
+            android:text="@string/n_vel_1"
             android:textSize="24sp" />
 
         <Button
             android:id="@+id/btnStartRound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Começar" />
+            android:text="@string/come_ar" />
     </LinearLayout>
 
     <!-- Lado direito: tabuleiro Genius -->
@@ -54,14 +54,12 @@
             android:id="@+id/buttongreen"
             android:layout_width="164dp"
             android:layout_height="211dp"
-            android:clickable="true"
             app:srcCompat="@drawable/botaoverde" />
 
         <ImageView
             android:id="@+id/buttonyellow"
             android:layout_width="match_parent"
             android:layout_height="192dp"
-            android:clickable="true"
             app:srcCompat="@drawable/botaoamar" />
     </LinearLayout>
 
@@ -76,14 +74,12 @@
             android:id="@+id/buttonred"
             android:layout_width="match_parent"
             android:layout_height="204dp"
-            android:clickable="true"
             app:srcCompat="@drawable/botaoverm" />
 
         <ImageView
             android:id="@+id/buttonblue"
             android:layout_width="149dp"
             android:layout_height="183dp"
-            android:clickable="true"
             app:srcCompat="@drawable/botaoazul" />
     </LinearLayout>
 

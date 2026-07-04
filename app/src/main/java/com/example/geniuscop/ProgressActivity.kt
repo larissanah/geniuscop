@@ -1,15 +1,19 @@
 package com.example.geniuscop
 
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.geniuscop.database.PartidaDao
 import com.example.geniuscop.databinding.ActivityProgressBinding
+import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.charts.LineChart
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.jvm.java
@@ -22,14 +26,30 @@ class ProgressActivity : AppCompatActivity() {
     private lateinit var partidaDao: PartidaDao
     private lateinit var binding: ActivityProgressBinding
     private lateinit var chart: LineChart
+    private var musicService: MusicService? = null
+    private var isBound = false
+
+    private val serviceConnection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
+            val localBinder = binder as MusicService.LocalBinder
+            musicService = localBinder.getService()
+            isBound = true
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            musicService = null
+            isBound = false
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_progress)
         val intent = Intent(this, MusicService::class.java)
-        startService(intent)
+        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
 
-        chart = findViewById<LineChart>(R.id.graph)
+
+        chart = findViewById< LineChart>(R.id.graph)
 
         val db = Room.databaseBuilder(
             applicationContext,
@@ -74,5 +94,20 @@ class ProgressActivity : AppCompatActivity() {
 //        )
         //binding.graph.addSeries(series)
     }
+
+    override fun onStart() {
+        super.onStart()
+        val intent = Intent(this, MusicService::class.java)
+        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (isBound) {
+            unbindService(serviceConnection)
+            isBound = false
+        }
+    }
+
 }
 

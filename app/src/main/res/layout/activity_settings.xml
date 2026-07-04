@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/genius1"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:context=".SettingsActivity">
 
     <Button
         android:id="@+id/voltar"
@@ -24,14 +25,14 @@
         android:id="@+id/txtConfigTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="10dp"
-        android:text="Configuraçes"
+        android:text="@string/conf"
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/voltar"/>
+        app:layout_constraintStart_toEndOf="@id/voltar"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="417dp"
@@ -45,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Perfil"
+            android:text="@string/perfil"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
@@ -53,13 +54,13 @@
             android:id="@+id/perfiljogador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Editar perfil" />
+            android:text="@string/editar_perfil" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Detalhes"
+            android:text="@string/detalhes"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
@@ -67,15 +68,15 @@
             android:id="@+id/switchDifficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Modo difícil"
+            android:text="@string/modo_dif_cil"
             android:textColor="@color/white" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Visualizaçao"
+            android:layout_marginTop="10dp"
+            android:text="@string/visualiza_ao"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
@@ -83,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Sonoro"
+            android:text="@string/sonoro"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
@@ -92,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Msica ligada"
+            android:text="@string/msica_ligada"
             android:textColor="@color/white" />
 
         <Switch
@@ -100,14 +101,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Efeitos sonoros ligados"
+            android:text="@string/efeitos_sonoros_ligados"
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/resetConfig"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Restaurar configuraçoes padrao" />
+            android:text="@string/restaurar_configura_oes_padrao" />
 
     </LinearLayout>
 

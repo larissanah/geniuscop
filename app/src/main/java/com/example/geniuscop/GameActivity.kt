@@ -9,7 +9,6 @@ import androidx.room.Room
 import com.example.geniuscop.database.PartidaDao
 import com.example.geniuscop.databinding.ActivityGameBinding
 import kotlinx.coroutines.*
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.jvm.java
 
@@ -150,6 +149,13 @@ class GameActivity : AppCompatActivity() {
             nextRound()
         }
     }
+
+    override fun onStop() {
+        super.onStop()
+        val intent = Intent(this, MusicService::class.java)
+        startService(intent)
+    }
+
 
     fun gameOver() {
         binding.txtLevel.text = "Fim de jogo! Pontuação: $round"

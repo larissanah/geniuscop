@@ -47,10 +47,10 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.androidx.activity)
 
-    val room_version = "2.8.4"
-    implementation("androidx.room:room-runtime:$room_version")
-    ksp("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
+    val roomversion = "2.8.4"
+    implementation("androidx.room:room-runtime:$roomversion")
+    ksp("androidx.room:room-compiler:$roomversion")
+    implementation("androidx.room:room-ktx:$roomversion")
 
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("com.google.android.material:material:1.14.0")
@@ -64,7 +64,6 @@ dependencies {
 
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
-    // Firebase BOM
     implementation(platform("com.google.firebase:firebase-bom:34.15.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
