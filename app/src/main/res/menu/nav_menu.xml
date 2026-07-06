@@ -22,7 +22,7 @@
             android:title="Progresso"/>
 
         <item
-            android:id="@+id/nav_ajuda"
+            android:id="@+id/nav_help"
             android:icon="@android:drawable/ic_menu_mylocation"
             android:title="Ajuda"/>
     </group>

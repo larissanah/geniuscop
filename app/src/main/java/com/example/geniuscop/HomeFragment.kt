@@ -1,16 +1,16 @@
 package com.example.geniuscop
 
-import android.os.Bundle
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Bundle
 import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
-import com.example.geniuscop.databinding.FragmentSettingsBinding
+import com.example.geniuscop.databinding.FragmentHomeBinding
 
-class SettingsFragment : AppCompatActivity() {
-    private lateinit var binding: FragmentSettingsBinding
+class HomeFragment : AppCompatActivity(){
+    private lateinit var binding: FragmentHomeBinding
     private var musicService: MusicService? = null
     private var isBound = false
 
@@ -26,26 +26,18 @@ class SettingsFragment : AppCompatActivity() {
             isBound = false
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentSettingsBinding.inflate(layoutInflater)
+        binding = FragmentHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val intent = Intent(this, MusicService::class.java)
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
 
-        binding.voltar.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+        binding.btnStart.setOnClickListener {
+            startActivity(Intent(this, GameFragment::class.java))
         }
 
-        //binding.switchSound.setOnCheckedChangeListener { _, isChecked ->
-        // salvar preferência de som
-        //}
-        //binding.switchDifficulty.setOnCheckedChangeListener { _, isChecked ->
-        // salvar preferência de dificuldade
-        //}
     }
-
-
 
     override fun onStart() {
         super.onStart()

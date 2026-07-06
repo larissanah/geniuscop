@@ -4,26 +4,15 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.geniuscop.database.PartidaDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import android.content.Intent
-import android.media.MediaPlayer
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil.setContentView
-import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
-import com.example.geniuscop.database.PartidaDao
 import com.example.geniuscop.databinding.FragmentGameBinding
 import kotlinx.coroutines.*
-import kotlinx.coroutines.launch
 import kotlin.jvm.java
 
 
@@ -41,7 +30,7 @@ class GameFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentGameBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
         val intent = Intent(this, MusicService::class.java)
         stopService(intent)
 

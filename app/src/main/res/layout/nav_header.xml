@@ -5,7 +5,7 @@
     android:layout_height="100dp"
     android:gravity="bottom"
     android:padding="16dp"
-    android:background="@color/blue"
+    android:background="#A28DFF"
     >
 
 </LinearLayout>
