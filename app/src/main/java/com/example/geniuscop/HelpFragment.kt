@@ -6,11 +6,21 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
+import androidx.fragment.app.Fragment
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.Bundle
+import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
-import com.example.geniuscop.databinding.ActivityProgressBinding
+import androidx.databinding.DataBindingUtil.setContentView
+import com.example.geniuscop.databinding.FragmentHelpBinding
+import com.google.firestore.v1.FirestoreGrpc.bindService
 
-class HelpActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityProgressBinding
+
+class HelpFragment : Fragment() {
+    private lateinit var binding: FragmentHelpBinding
 
     private var musicService: MusicService? = null
     private var isBound = false
@@ -30,7 +40,7 @@ class HelpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityProgressBinding.inflate(layoutInflater)
+        binding = FragmentHelpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val intent = Intent(this, MusicService::class.java)
@@ -57,5 +67,4 @@ class HelpActivity : AppCompatActivity() {
             isBound = false
         }
     }
-
 }

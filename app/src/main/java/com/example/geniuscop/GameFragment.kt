@@ -3,22 +3,36 @@ package com.example.geniuscop
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.geniuscop.database.PartidaDao
-import com.example.geniuscop.databinding.ActivityGameBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import android.content.Intent
+import android.media.MediaPlayer
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil.setContentView
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
+import com.example.geniuscop.database.PartidaDao
+import com.example.geniuscop.databinding.FragmentGameBinding
 import kotlinx.coroutines.*
 import kotlinx.coroutines.launch
 import kotlin.jvm.java
 
 
-class GameActivity : AppCompatActivity() {
+class GameFragment : Fragment() {
     private var mediaPlayer1: MediaPlayer? = null
     private var mediaPlayer2: MediaPlayer? = null
     private var mediaPlayer3: MediaPlayer? = null
     private var mediaPlayer4: MediaPlayer? = null
-    private lateinit var binding: ActivityGameBinding
+    private lateinit var binding: FragmentGameBinding
     private val sequence = mutableListOf<Int>()
     private val playerMoves = mutableListOf<Int>()
     private lateinit var partidaDao: PartidaDao
@@ -26,7 +40,7 @@ class GameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityGameBinding.inflate(layoutInflater)
+        binding = FragmentGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val intent = Intent(this, MusicService::class.java)
         stopService(intent)
@@ -90,7 +104,7 @@ class GameActivity : AppCompatActivity() {
     private fun finalizarPartida(acertos: Int){
         lifecycleScope.launch {
             val partida = Partida(
-               acertos = round,
+                acertos = round,
                 data = System.currentTimeMillis()
             )
             partidaDao.inserir(partida)

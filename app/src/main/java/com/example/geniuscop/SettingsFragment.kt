@@ -1,5 +1,10 @@
 package com.example.geniuscop
 
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -7,10 +12,10 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
-import com.example.geniuscop.databinding.ActivitySettingsBinding
+import com.example.geniuscop.databinding.FragmentSettingsBinding
 
-class SettingsActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySettingsBinding
+class SettingsFragment : AppCompatActivity() {
+    private lateinit var binding: FragmentSettingsBinding
     private var musicService: MusicService? = null
     private var isBound = false
 
@@ -28,7 +33,7 @@ class SettingsActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        binding = FragmentSettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val intent = Intent(this, MusicService::class.java)
@@ -39,10 +44,10 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         //binding.switchSound.setOnCheckedChangeListener { _, isChecked ->
-            // salvar preferência de som
+        // salvar preferência de som
         //}
         //binding.switchDifficulty.setOnCheckedChangeListener { _, isChecked ->
-            // salvar preferência de dificuldade
+        // salvar preferência de dificuldade
         //}
     }
 
@@ -63,4 +68,3 @@ class SettingsActivity : AppCompatActivity() {
     }
 
 }
-

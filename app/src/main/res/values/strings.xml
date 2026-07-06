@@ -40,4 +40,6 @@
     <string name="conf">Configurações</string>
     <string name="modo_dif_cil">Modo difícil</string>
     <string name="ja">Clique aqui se você já possui uma conta</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
