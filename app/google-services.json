@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "37408529847",
+    "project_id": "geniuscop",
+    "storage_bucket": "geniuscop.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37408529847:android:1b04a9763356d163091c32",
+        "android_client_info": {
+          "package_name": "com.example.geniuscop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkR1XcT6xaCsGTfWUC9tU1YnZDe1fcYTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
