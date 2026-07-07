@@ -1,20 +1,22 @@
 package com.example.geniuscop
 
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.geniuscop.databinding.ActivityProfileBinding
 import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
 import android.content.ServiceConnection
-import android.os.Bundle
 import android.os.IBinder
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import com.example.geniuscop.databinding.FragmentHomeBinding
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 
-class HomeFragment : AppCompatActivity(){
-    private lateinit var binding: FragmentHomeBinding
+class ProfileActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityProfileBinding
+    private lateinit var firebaseAuth: FirebaseAuth
+
     private var musicService: MusicService? = null
     private var isBound = false
-
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
             val localBinder = binder as MusicService.LocalBinder
@@ -30,17 +32,24 @@ class HomeFragment : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent = Intent(requireContext(), MusicService::class.java)
-        requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        firebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = firebaseAuth.currentUser
 
+        binding.id.text = currentUser?.uid
+        binding.name.text = currentUser?.displayName
+        binding.email.text = currentUser?.email
 
-        binding.btnStart.setOnClickListener {
-            startActivity(Intent(this, GameFragment::class.java))
+        Glide.with(this).load(currentUser?.photoUrl).into(binding.profileImage);
+
+        val intent = Intent(this, MusicService::class.java)
+        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+
+        binding.voltar.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
         }
-
     }
 
     override fun onStart() {
@@ -52,9 +61,13 @@ class HomeFragment : AppCompatActivity(){
     override fun onStop() {
         super.onStop()
         if (isBound) {
-            requireContext().unbindService(serviceConnection)
+            unbindService(serviceConnection)
             isBound = false
         }
     }
 
+
 }
+
+
+

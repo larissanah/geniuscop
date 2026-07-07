@@ -31,21 +31,21 @@ class GameFragment : Fragment() {
         super.onCreate(savedInstanceState)
         binding = FragmentGameBinding.inflate(layoutInflater)
 
-        val intent = Intent(this, MusicService::class.java)
-        stopService(intent)
+        val intent = Intent(requireContext(), MusicService::class.java)
+        requireContext().stopService(intent)
 
 
         val db = Room.databaseBuilder(
-            applicationContext,
+            requireContext().applicationContext,
             AppDatabase::class.java,
             "meu-banco"
         ).build()
         partidaDao = db.partidaDao()
 
-        mediaPlayer1 = MediaPlayer.create(this, R.raw.taiko)
-        mediaPlayer2 = MediaPlayer.create(this, R.raw.efect)
-        mediaPlayer3 = MediaPlayer.create(this, R.raw.orch)
-        mediaPlayer4 = MediaPlayer.create(this, R.raw.free)
+        mediaPlayer1 = MediaPlayer.create(requireContext(), R.raw.taiko)
+        mediaPlayer2 = MediaPlayer.create(requireContext(), R.raw.efect)
+        mediaPlayer3 = MediaPlayer.create(requireContext(), R.raw.orch)
+        mediaPlayer4 = MediaPlayer.create(requireContext(), R.raw.free)
 
         binding.btnStartRound.setOnClickListener {
             startGame()
@@ -86,7 +86,7 @@ class GameFragment : Fragment() {
 
         binding.voltar.setOnClickListener {
 
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(requireContext(), MainActivity::class.java))
         }
 
     }
@@ -155,8 +155,8 @@ class GameFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        val intent = Intent(this, MusicService::class.java)
-        startService(intent)
+        val intent = Intent(requireContext(), MusicService::class.java)
+        requireContext().startService(intent)
     }
 
 

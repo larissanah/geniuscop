@@ -41,15 +41,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.profile_image -> {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+            }
             R.id.nav_main -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment()).commit()
+                .replace(R.id.fragment_container, HomeFragment())
+                .commit()
             R.id.nav_settings -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SettingsFragment()).commit()
+                .replace(R.id.fragment_container, SettingsFragment())
+                .commit()
             R.id.nav_progress -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ProgressFragment()).commit()
+                .replace(R.id.fragment_container, ProgressFragment())
+                .commit()
             R.id.nav_help -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HelpFragment()).commit()
-            R.id.nav_logout -> startActivity(Intent(this, LoginActivity::class.java))
+                .replace(R.id.fragment_container, HelpFragment())
+                .commit()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

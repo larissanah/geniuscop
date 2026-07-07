@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.geniuscop" />
+                  <option name="mobileSdkAppId" value="1:37408529847:android:1b04a9763356d163091c32" />
+                  <option name="projectId" value="geniuscop" />
+                  <option name="projectNumber" value="37408529847" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

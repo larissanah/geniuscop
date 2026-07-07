@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.geniuscop.database.PartidaDao
 import com.example.geniuscop.databinding.FragmentProgressBinding
+import com.example.geniuscop.databinding.FragmentSettingsBinding
 import com.github.mikephil.charting.charts.LineChart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -44,14 +45,16 @@ class ProgressFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val intent = Intent(this, MusicService::class.java)
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        binding = FragmentProgressBinding.inflate(layoutInflater)
+
+        val intent = Intent(requireContext(), MusicService::class.java)
+        requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
 
 
-        chart = findViewById< LineChart>(R.id.graph)
+        chart = binding.graph
 
         val db = Room.databaseBuilder(
-            applicationContext,
+            requireContext().applicationContext,
             AppDatabase::class.java,
             "meu-banco"
         ).build()
@@ -80,7 +83,7 @@ class ProgressFragment : Fragment() {
 
 
         binding.voltar.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(requireContext(), MainActivity::class.java))
         }
 
 //        val series = LineGraphSeries(
@@ -96,14 +99,14 @@ class ProgressFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val intent = Intent(this, MusicService::class.java)
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        val intent = Intent(requireContext(), MusicService::class.java)
+        requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
     override fun onStop() {
         super.onStop()
         if (isBound) {
-            unbindService(serviceConnection)
+            requireContext().unbindService(serviceConnection)
             isBound = false
         }
     }

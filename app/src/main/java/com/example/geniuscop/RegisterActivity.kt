@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.postDelayed
 import com.example.geniuscop.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
+import java.util.logging.Handler
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -16,6 +18,19 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        val user = firebaseAuth.currentUser
+
+        android.os.Handler().postDelayed(2000){
+            if (user != null){
+                val profileIntent = Intent(this, ProfileActivity::class.java)
+                startActivity(profileIntent)
+                finish()
+            } else {
+                val loginIntent = Intent(this, LoginActivity::class.java)
+                startActivity(loginIntent)
+                finish()
+            }
+        }
 
         binding.textView.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)

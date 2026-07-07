@@ -35,27 +35,27 @@ class HelpFragment : Fragment() {
         super.onCreate(savedInstanceState)
         binding = FragmentHelpBinding.inflate(layoutInflater)
 
-        val intent = Intent(this, MusicService::class.java)
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        val intent = Intent(requireContext(), MusicService::class.java)
+        requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
 
 
 
         binding.voltar.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(requireContext(), MainActivity::class.java))
         }
     }
 
 
     override fun onStart() {
         super.onStart()
-        val intent = Intent(this, MusicService::class.java)
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        val intent = Intent(requireContext(), MusicService::class.java)
+        requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
     override fun onStop() {
         super.onStop()
         if (isBound) {
-            unbindService(serviceConnection)
+            requireContext().unbindService(serviceConnection)
             isBound = false
         }
     }
