@@ -7,9 +7,7 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import androidx.fragment.app.Fragment
-import androidx.databinding.DataBindingUtil.setContentView
 import com.example.geniuscop.databinding.FragmentHelpBinding
-import com.google.firestore.v1.FirestoreGrpc.bindService
 
 
 class HelpFragment : Fragment() {

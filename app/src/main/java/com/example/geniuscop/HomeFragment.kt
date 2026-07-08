@@ -6,11 +6,11 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.databinding.DataBindingUtil.setContentView
+import androidx.fragment.app.Fragment
 import com.example.geniuscop.databinding.FragmentHomeBinding
 
-class HomeFragment : AppCompatActivity(){
+class HomeFragment : Fragment(){
     private lateinit var binding: FragmentHomeBinding
     private var musicService: MusicService? = null
     private var isBound = false
@@ -31,22 +31,21 @@ class HomeFragment : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
 
 
         binding.btnStart.setOnClickListener {
-            startActivity(Intent(this, GameFragment::class.java))
+            startActivity(Intent(requireContext(), GameFragment::class.java))
         }
 
     }
 
     override fun onStart() {
         super.onStart()
-        val intent = Intent(this, MusicService::class.java)
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        val intent = Intent(requireContext(), MusicService::class.java)
+        requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
     override fun onStop() {

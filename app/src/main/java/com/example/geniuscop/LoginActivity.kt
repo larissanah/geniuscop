@@ -1,7 +1,6 @@
 package com.example.geniuscop
 
 import android.content.ComponentName
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
@@ -19,6 +18,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity() {
+    companion object {
+        private const val RC_SIGN_IN = 120
+    }
     private lateinit var binding: ActivityLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -55,22 +57,7 @@ class LoginActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         binding.button.setOnClickListener {
-            val email = binding.emailEt.text.toString()
-            val pass = binding.passET.text.toString()
-
-            if (email.isNotEmpty() && pass.isNotEmpty()){
-                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-                    if (it.isSuccessful){
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }else {
-                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
-            }
+            signIn()
         }
     }
 
@@ -89,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
                 try {
                     val account = task.getResult(ApiException::class.java)
                     Log.d("SignInActivity", "firebaseAuthWIthGoogle:" + account.id)
-                    firebaseAuthWithGoogle(account.idToken)
+                    firebaseAuthWithGoogle(account.idToken!!)
                 } catch (e: ApiException){
                     Log.w("SignInActivity", "Google sign in failed", e)
                 }
@@ -104,12 +91,12 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithCredential:success")
+                    Log.d("SignInActivity", "signInWithCredential:success")
                     val user = firebaseAuth.currentUser
-                    val profileIntent = Intent(this, ProfileActivity::class.java)
+                    val profileIntent = Intent(this, MainActivity::class.java)
                     startActivity(profileIntent)
                 } else {
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    Log.w("SignInActivity", "signInWithCredential:failure", task.exception)
                 }
             }
     }
@@ -118,11 +105,11 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val intent = Intent(this, MusicService::class.java)
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        if (currentUser != null) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
+//        val currentUser = FirebaseAuth.getInstance().currentUser
+//        if (currentUser != null) {
+//            startActivity(Intent(this, MainActivity::class.java))
+//            finish()
+//        }
     }
 
     override fun onStop() {

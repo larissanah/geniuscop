@@ -1,15 +1,15 @@
 package com.example.geniuscop
 
+import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import androidx.appcompat.app.AppCompatActivity
 import com.example.geniuscop.databinding.FragmentSettingsBinding
 
-class SettingsFragment : AppCompatActivity() {
+class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private var musicService: MusicService? = null
     private var isBound = false
@@ -30,11 +30,11 @@ class SettingsFragment : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = FragmentSettingsBinding.inflate(layoutInflater)
 
-        val intent = Intent(this, MusicService::class.java)
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        val intent = Intent(requireContext(), MusicService::class.java)
+        requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
 
         binding.voltar.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(requireContext(), MainActivity::class.java))
         }
 
         //binding.switchSound.setOnCheckedChangeListener { _, isChecked ->
@@ -49,14 +49,14 @@ class SettingsFragment : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val intent = Intent(this, MusicService::class.java)
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        val intent = Intent(requireContext(), MusicService::class.java)
+        requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
     override fun onStop() {
         super.onStop()
         if (isBound) {
-            unbindService(serviceConnection)
+            requireContext().unbindService(serviceConnection)
             isBound = false
         }
     }
