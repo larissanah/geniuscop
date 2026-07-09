@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        binding.button.setOnClickListener {
+        binding.button2.setOnClickListener {
             signIn()
         }
     }
@@ -92,7 +92,6 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("SignInActivity", "signInWithCredential:success")
-                    val user = firebaseAuth.currentUser
                     val profileIntent = Intent(this, MainActivity::class.java)
                     startActivity(profileIntent)
                 } else {
@@ -108,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
 //        val currentUser = FirebaseAuth.getInstance().currentUser
 //        if (currentUser != null) {
 //            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
+            finish()
 //        }
     }
 
