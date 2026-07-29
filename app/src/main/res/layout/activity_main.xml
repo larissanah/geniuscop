@@ -15,9 +15,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <FrameLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragment_container"/>
+            android:layout_height="match_parent">
+
+        </FrameLayout>
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
@@ -28,5 +30,7 @@
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="#03A9F4"
         app:itemTextColor="#2196F3"/>
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

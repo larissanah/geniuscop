@@ -1,10 +1,7 @@
 package com.example.geniuscop
 
-import android.content.ComponentName
 import android.content.Intent
-import android.content.ServiceConnection
 import android.os.Bundle
-import android.os.IBinder
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -41,9 +38,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.profile_image -> {
+            R.id.imageperfil -> {
                 val intent = Intent(this, ProfileActivity::class.java)
                 startActivity(intent)
+            }
+            R.id.voltar -> {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                } else {
+                         onBackPressedDispatcher.onBackPressed()
+                 }
             }
             R.id.nav_main -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HomeFragment())
@@ -62,13 +66,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            onBackPressedDispatcher.onBackPressed()
-        }
-    }
+    //override fun onBackPressedDispatcher() {
+     //   if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+      //      drawerLayout.closeDrawer(GravityCompat.START)
+      //  } else {
+       //     onBackPressedDispatcher.onBackPressed()
+     //   }
+   // }
 
 
 

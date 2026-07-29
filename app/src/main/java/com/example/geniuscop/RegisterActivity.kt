@@ -38,16 +38,17 @@ class RegisterActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        binding.button2.setOnClickListener {
+        binding.google.setOnClickListener {
             signInWithGoogle()
+            Toast.makeText(this, "Register c google", Toast.LENGTH_SHORT).show()
         }
-        binding.textView.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+        binding.irLogin.setOnClickListener {
+            mudarTela()
+            Toast.makeText(this, "Indo para login", Toast.LENGTH_SHORT).show()
         }
 
 
-        binding.button.setOnClickListener {
+        binding.signup.setOnClickListener {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
             val confirmPass = binding.confirmPassEt.text.toString()
@@ -76,6 +77,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun signInWithGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+        mudarTela()
     }
 
     override fun onStart() {
@@ -85,6 +87,12 @@ class RegisterActivity : AppCompatActivity() {
 //            startActivity(Intent(this, MainActivity::class.java))
 //            finish()
 //        }
+    }
+
+    private fun mudarTela() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onActivityResult(

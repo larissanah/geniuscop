@@ -87,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/esqueceusenha" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login com google"
@@ -104,6 +104,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/google"
         app:layout_constraintVertical_bias="0.388" />
 </androidx.constraintlayout.widget.ConstraintLayout>
