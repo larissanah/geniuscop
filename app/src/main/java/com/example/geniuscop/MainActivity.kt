@@ -3,7 +3,7 @@ package com.example.geniuscop
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,19 +19,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        drawerLayout = findViewById(R.id.drawer_layout)
+
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
+        val btnAbrirMenu = findViewById<Button>(R.id.abrirmenu)
+        btnAbrirMenu.setOnClickListener {
+            if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
+        }
+
+        val iniciar = findViewById<Button>(R.id.btnStart)
+        iniciar.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, GameFragment())
+            .commit()
+        }
         val intent = Intent(this, MusicService::class.java)
         startService(intent)
 
-        val toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open_nav, R.string.close_nav)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
         if (savedInstanceState == null){
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment()).commit()
             navigationView.setCheckedItem(R.id.nav_main)
         }
     }
@@ -42,16 +51,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val intent = Intent(this, ProfileActivity::class.java)
                 startActivity(intent)
             }
-            R.id.voltar -> {
+            R.id.exit -> {
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)){
                     drawerLayout.closeDrawer(GravityCompat.START)
                 } else {
                          onBackPressedDispatcher.onBackPressed()
-                 }
+                }
             }
-            R.id.nav_main -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment())
-                .commit()
+            R.id.nav_main -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)}
             R.id.nav_settings -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, SettingsFragment())
                 .commit()
@@ -65,17 +74,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-
-    //override fun onBackPressedDispatcher() {
-     //   if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-      //      drawerLayout.closeDrawer(GravityCompat.START)
-      //  } else {
-       //     onBackPressedDispatcher.onBackPressed()
-     //   }
-   // }
-
-
-
 }
 
 

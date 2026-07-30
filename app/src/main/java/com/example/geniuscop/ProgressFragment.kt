@@ -7,6 +7,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
@@ -43,13 +46,20 @@ class ProgressFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = FragmentProgressBinding.inflate(layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentProgressBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
-
 
         chart = binding.graph
 
@@ -81,9 +91,9 @@ class ProgressFragment : Fragment() {
             }
         }
 
-
         binding.voltar.setOnClickListener {
-            startActivity(Intent(requireContext(), MainActivity::class.java))
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
         }
 
 //        val series = LineGraphSeries(

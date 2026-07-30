@@ -7,6 +7,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.example.geniuscop.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -26,15 +29,30 @@ class SettingsFragment : Fragment() {
             isBound = false
         }
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = FragmentSettingsBinding.inflate(layoutInflater)
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
 
+        binding.perfiljogador.setOnClickListener {
+            val intent = Intent(requireContext(), ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.voltar.setOnClickListener {
-            startActivity(Intent(requireContext(), MainActivity::class.java))
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
         }
 
         //binding.switchSound.setOnCheckedChangeListener { _, isChecked ->

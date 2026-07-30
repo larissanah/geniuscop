@@ -55,6 +55,10 @@ class LoginActivity : AppCompatActivity() {
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        binding.button.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
         binding.google.setOnClickListener {
             signIn()
         }
@@ -103,11 +107,11 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val intent = Intent(this, MusicService::class.java)
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
-//        val currentUser = FirebaseAuth.getInstance().currentUser
-//        if (currentUser != null) {
-//            startActivity(Intent(this, MainActivity::class.java))
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
-//        }
+        }
     }
 
     override fun onStop() {

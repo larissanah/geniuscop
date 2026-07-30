@@ -17,17 +17,17 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/txt"
+        android:id="@+id/txtperfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Perfil"
         android:textColor="@color/blue" />
 
     <Button
+        android:id="@+id/exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icon="@android:drawable/btn_dialog"
         android:layout_marginStart="100dp"
-        />
+        app:icon="@android:drawable/btn_dialog" />
 
 </LinearLayout>

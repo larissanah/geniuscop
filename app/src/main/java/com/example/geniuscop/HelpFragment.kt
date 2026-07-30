@@ -6,6 +6,9 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.geniuscop.databinding.FragmentHelpBinding
 
@@ -29,20 +32,25 @@ class HelpFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = FragmentHelpBinding.inflate(layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentHelpBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
 
-
-
         binding.voltar.setOnClickListener {
-            startActivity(Intent(requireContext(), MainActivity::class.java))
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
         }
     }
-
 
     override fun onStart() {
         super.onStart()

@@ -38,8 +38,9 @@
         android:id="@+id/video"
         android:layout_width="427dp"
         android:layout_height="251dp"
-        android:layout_margin="32dp"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="69dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

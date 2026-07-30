@@ -3,6 +3,9 @@ package com.example.geniuscop
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
@@ -10,10 +13,9 @@ import com.example.geniuscop.database.PartidaDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import androidx.databinding.DataBindingUtil.setContentView
 import com.example.geniuscop.databinding.FragmentGameBinding
-import kotlinx.coroutines.*
 import kotlin.jvm.java
+import kotlin.time.Duration.Companion.milliseconds
 
 
 class GameFragment : Fragment() {
@@ -27,9 +29,18 @@ class GameFragment : Fragment() {
     private lateinit var partidaDao: PartidaDao
     var round = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = FragmentGameBinding.inflate(layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentGameBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
 
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().stopService(intent)
@@ -47,46 +58,15 @@ class GameFragment : Fragment() {
         mediaPlayer3 = MediaPlayer.create(requireContext(), R.raw.orch)
         mediaPlayer4 = MediaPlayer.create(requireContext(), R.raw.free)
 
-        binding.btnStartRound.setOnClickListener {
-            startGame()
-        }
-
-        binding.buttongreen.setOnClickListener {
-            binding.buttongreen.alpha = 0.5f
-            try {
-                mediaPlayer1?.start()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            playerClick(0) }
-        binding.buttonred.setOnClickListener {
-            binding.buttonred.alpha = 0.5f
-            try {
-                mediaPlayer2?.start()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            playerClick(1) }
-        binding.buttonyellow.setOnClickListener {
-            binding.buttonyellow.alpha = 0.5f
-            try {
-                mediaPlayer3?.start()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            playerClick(2) }
-        binding.buttonblue.setOnClickListener {
-            binding.buttonblue.alpha = 0.5f
-            try {
-                mediaPlayer4?.start()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            playerClick(3) }
+        binding.btnStartRound.setOnClickListener { startGame() }
+        binding.buttongreen.setOnClickListener { playerClick(0); mediaPlayer1?.start() }
+        binding.buttonred.setOnClickListener { playerClick(1); mediaPlayer2?.start() }
+        binding.buttonyellow.setOnClickListener { playerClick(2); mediaPlayer3?.start() }
+        binding.buttonblue.setOnClickListener { playerClick(3); mediaPlayer4?.start() }
 
         binding.voltar.setOnClickListener {
-
-            startActivity(Intent(requireContext(), MainActivity::class.java))
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -117,12 +97,12 @@ class GameFragment : Fragment() {
                     2 -> binding.buttonyellow.alpha = 0.5f
                     3 -> binding.buttonblue.alpha = 0.5f
                 }
-                delay(300)
+                delay(300.milliseconds)
                 binding.buttongreen.alpha = 1f
                 binding.buttonred.alpha = 1f
                 binding.buttonyellow.alpha = 1f
                 binding.buttonblue.alpha = 1f
-                delay(500)
+                delay(500.milliseconds)
             }
         }
     }
