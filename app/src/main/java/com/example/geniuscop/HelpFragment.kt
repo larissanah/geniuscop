@@ -45,7 +45,16 @@ class HelpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        
+        val video = view.findViewById<VideoView>(R.id.video)
+        //PRECISA ADD VIDEO NOS RESOURCES val uri = Uri.parse("url")
+        video.setVideoURI(uri)
 
+        val mediaController = MediaController(requireContext())
+        mediaController.setAnchorView(video)
+        video.setMediaController(mediaController)
+        video.setOnPreparedListener {video.start()} return view
+        
         binding.voltar.setOnClickListener {
             val intent = Intent(requireContext(), MainActivity::class.java)
             startActivity(intent)
