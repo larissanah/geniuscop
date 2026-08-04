@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
-
     private var musicService: MusicService? = null
     private var isBound = false
     private val serviceConnection = object : ServiceConnection {
@@ -42,6 +41,7 @@ class ProfileActivity : AppCompatActivity() {
         binding.name.text = currentUser?.displayName
         binding.email.text = currentUser?.email
         binding.sairdaconta.setOnClickListener {
+            firebaseAuth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)

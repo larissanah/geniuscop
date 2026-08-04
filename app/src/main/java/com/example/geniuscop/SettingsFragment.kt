@@ -10,6 +10,7 @@ import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.preference.SwitchPreferenceCompat
 import com.example.geniuscop.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -49,6 +50,10 @@ class SettingsFragment : Fragment() {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
         }
+        findPreference<SwitchPreferenceCompat>("modo")
+        findPreference<SwitchPreferenceCompat>("musica")
+        findPreference<SwitchPreferenceCompat>("efeitos")
+        findPreference<SwitchPreferenceCompat>("tema")
 
         binding.voltar.setOnClickListener {
             val intent = Intent(requireContext(), MainActivity::class.java)

@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.preference.SwitchPreferenceCompat
 import com.example.geniuscop.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 

@@ -61,7 +61,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
+    implementation("androidx.preference:preference:1.2.1")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     implementation(platform("com.google.firebase:firebase-bom:34.15.0"))

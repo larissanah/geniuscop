@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        android:key="dificuldade"
+        android:title="Acionar modo difícil"/>
+
+    <SwitchPreferenceCompat
+        android:key="modo"
+        android:title="Modo baixo contraste"/>
+
+    <SwitchPreferenceCompat
+        android:key="efeitos"
+        android:title="Retirar efeitos sonoros"/>
+
+    <SwitchPreferenceCompat
+        android:key="musica"
+        android:title="Retirar música"/>
+
+    <SwitchPreferenceCompat
+        android:key="tema"
+        android:title="Mudar tema do jogo"/>
+
+    <Preference
+        android:key="musica"
+        android:title="Restaurar configuracoes padroes"
+        android:summary="Restaurar configuracoes padroes"/>
+
+</androidx.preference.PreferenceScreen>
