@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.geniuscop.databinding.FragmentHelpBinding
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 
 class HelpFragment : Fragment() {
@@ -46,15 +48,15 @@ class HelpFragment : Fragment() {
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
         
-        val video = view.findViewById<VideoView>(R.id.video)
-        //PRECISA ADD VIDEO NOS RESOURCES val uri = Uri.parse("url")
-        video.setVideoURI(uri)
+        val video = binding.video
+        lifecycle.addObserver(video)
+        video.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                val videoId = "dQw4w9WgXcQ"
+                youTubePlayer.loadVideo(videoId, 0f)
+            }
+        })
 
-        val mediaController = MediaController(requireContext())
-        mediaController.setAnchorView(video)
-        video.setMediaController(mediaController)
-        video.setOnPreparedListener {video.start()} return view
-        
         binding.voltar.setOnClickListener {
             val intent = Intent(requireContext(), MainActivity::class.java)
             startActivity(intent)
@@ -69,6 +71,7 @@ class HelpFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
+        binding.video.release()
         if (isBound) {
             requireContext().unbindService(serviceConnection)
             isBound = false

@@ -29,17 +29,17 @@
                 android:layout_marginBottom="300dp"
                 />
 
-            <Button
-                android:id="@+id/btnStart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="300dp"
-                android:layout_marginTop="156dp"
-                android:backgroundTint="#000000"
-                android:text="@string/iniciar"
-                android:textSize="35sp"
-                 />
-        </FrameLayout>
+           <Button
+               android:id="@+id/btnStart"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="350dp"
+               android:layout_marginTop="176dp"
+               android:backgroundTint="#021162"
+               android:text="@string/iniciar"
+               android:gravity="center"
+               android:textSize="35sp" />
+       </FrameLayout>
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"

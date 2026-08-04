@@ -47,18 +47,20 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="40dp"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/buttongreen"
-            android:layout_width="164dp"
-            android:layout_height="211dp"
+            android:layout_width="214dp"
+            android:layout_height="180dp"
             app:srcCompat="@drawable/botaoverde" />
 
         <ImageView
             android:id="@+id/buttonyellow"
             android:layout_width="match_parent"
-            android:layout_height="192dp"
+            android:layout_height="152dp"
             app:srcCompat="@drawable/botaoamar" />
     </LinearLayout>
 
@@ -67,18 +69,19 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
+        android:layout_marginTop="25dp"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/buttonred"
             android:layout_width="match_parent"
-            android:layout_height="204dp"
+            android:layout_height="180dp"
             app:srcCompat="@drawable/botaoverm" />
 
         <ImageView
             android:id="@+id/buttonblue"
-            android:layout_width="149dp"
-            android:layout_height="183dp"
+            android:layout_width="209dp"
+            android:layout_height="133dp"
             app:srcCompat="@drawable/botaoazul" />
     </LinearLayout>
 

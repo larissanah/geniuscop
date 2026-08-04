@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textColor="@color/white"
-        android:text="@string/bem_vindo"
+        android:text="Bem vindo! Login"
         android:textStyle="bold"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -46,12 +46,13 @@
         <ImageView
             android:id="@+id/profile_image"
             android:layout_width="150dp"
-            android:layout_height="150dp" />
+            android:layout_height="150dp"
+            android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="UID"
             android:textColor="@color/white" />
 
@@ -66,7 +67,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="Nome"
             android:textColor="@color/white" />
 
@@ -81,7 +82,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="Email"
             android:textColor="@color/white" />
 
@@ -92,6 +93,13 @@
             android:text="Email"
             android:textColor="@color/white"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/sairdaconta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sair da conta"
+            app:icon="@drawable/common_full_open_on_phone" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

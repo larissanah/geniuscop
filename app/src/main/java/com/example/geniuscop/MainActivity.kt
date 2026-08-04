@@ -70,6 +70,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_help -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HelpFragment())
                 .commit()
+            R.id.nav_profile -> {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)}
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
