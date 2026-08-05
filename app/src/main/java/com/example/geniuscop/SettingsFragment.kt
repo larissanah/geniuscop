@@ -10,6 +10,10 @@ import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.preference.SwitchPreferenceCompat
 import com.example.geniuscop.databinding.FragmentSettingsBinding
 
@@ -42,23 +46,22 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
 
-        binding.perfiljogador.setOnClickListener {
-            val intent = Intent(requireContext(), ProfileActivity::class.java)
-            startActivity(intent)
-        }
-        findPreference<SwitchPreferenceCompat>("modo")
-        findPreference<SwitchPreferenceCompat>("musica")
-        findPreference<SwitchPreferenceCompat>("efeitos")
-        findPreference<SwitchPreferenceCompat>("tema")
+//        findPreference<SwitchPreferenceCompat>("modo")
+//        findPreference<SwitchPreferenceCompat>("musica")
+//        findPreference<SwitchPreferenceCompat>("efeitos")
+//        findPreference<SwitchPreferenceCompat>("tema")
 
-        binding.voltar.setOnClickListener {
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            startActivity(intent)
-        }
+//        val btnAbrirMenu = binding.voltar
+//        btnAbrirMenu.setOnClickListener {
+//            if (drawerLayout.visibility == View.GONE) {
+//                drawerLayout.visibility = View.VISIBLE
+//            } else {
+//                drawerLayout.visibility = View.GONE
+//            }
+//        }
 
         //binding.switchSound.setOnCheckedChangeListener { _, isChecked ->
         // salvar preferência de som

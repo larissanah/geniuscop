@@ -10,7 +10,9 @@ import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil.setContentView
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.geniuscop.database.PartidaDao
@@ -60,7 +62,6 @@ class ProgressFragment : Fragment() {
 
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
-
         chart = binding.graph
 
         val db = Room.databaseBuilder(
@@ -91,10 +92,14 @@ class ProgressFragment : Fragment() {
             }
         }
 
-        binding.voltar.setOnClickListener {
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            startActivity(intent)
-        }
+//        val btnAbrirMenu = binding.voltar
+//        btnAbrirMenu.setOnClickListener {
+//            if (drawerLayout.visibility == View.GONE) {
+//                drawerLayout.visibility = View.VISIBLE
+//            } else {
+//                drawerLayout.visibility = View.GONE
+//            }
+//        }
 
 //        val series = LineGraphSeries(
 //            arrayOf(

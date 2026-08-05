@@ -9,6 +9,8 @@ import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.geniuscop.databinding.FragmentHelpBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -47,7 +49,6 @@ class HelpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
-        
         val video = binding.video
         lifecycle.addObserver(video)
         video.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
@@ -57,10 +58,14 @@ class HelpFragment : Fragment() {
             }
         })
 
-        binding.voltar.setOnClickListener {
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            startActivity(intent)
-        }
+//        val btnAbrirMenu = binding.voltar
+//        btnAbrirMenu.setOnClickListener {
+//            if (drawerLayout.visibility == View.GONE) {
+//                drawerLayout.visibility = View.VISIBLE
+//            } else {
+//                drawerLayout.visibility = View.GONE
+//            }
+//        }
     }
 
     override fun onStart() {

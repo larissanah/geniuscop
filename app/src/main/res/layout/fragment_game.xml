@@ -47,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="20dp"
         android:orientation="vertical">
 
         <ImageView
@@ -60,7 +60,8 @@
         <ImageView
             android:id="@+id/buttonyellow"
             android:layout_width="match_parent"
-            android:layout_height="152dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="40dp"
             app:srcCompat="@drawable/botaoamar" />
     </LinearLayout>
 
@@ -69,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:orientation="vertical">
 
         <ImageView
@@ -81,8 +82,11 @@
         <ImageView
             android:id="@+id/buttonblue"
             android:layout_width="209dp"
-            android:layout_height="133dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="40dp"
             app:srcCompat="@drawable/botaoazul" />
     </LinearLayout>
+
+
 
 </LinearLayout>

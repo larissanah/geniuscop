@@ -7,6 +7,8 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.geniuscop.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -26,6 +28,20 @@ class LoginActivity : AppCompatActivity() {
     private var musicService: MusicService? = null
     private var isBound = false
 
+    private val signInLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                Log.d("LoginActivity", "firebaseAuthWithGoogle:" + account.id)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                Log.w("LoginActivity", "Google sign in failed", e)
+            }
+        }
+    }
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
             val localBinder = binder as MusicService.LocalBinder
@@ -56,8 +72,17 @@ class LoginActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         binding.button.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            val email = binding.emailEt.text.toString().trim()
+            val password = binding.passET.text.toString().trim()
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+            } else {
+                loginUser(email, password)
+            }
+            loginUser(email, password)
+
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
         }
         binding.google.setOnClickListener {
             signIn()
@@ -66,28 +91,43 @@ class LoginActivity : AppCompatActivity() {
 
     private fun signIn(){
         val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-
+        signInLauncher.launch(signInIntent)
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN){
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            val exception = task.exception
-            if (task.isSuccessful){
-                try {
-                    val account = task.getResult(ApiException::class.java)
-                    Log.d("SignInActivity", "firebaseAuthWIthGoogle:" + account.id)
-                    firebaseAuthWithGoogle(account.idToken!!)
-                } catch (e: ApiException){
-                    Log.w("SignInActivity", "Google sign in failed", e)
+    private fun loginUser(email: String, password: String) {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(this, "Erro no login: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                 }
-            }else{
-                Log.w("SignInActivity", exception.toString())
             }
-        }
     }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == RC_SIGN_IN){
+//            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+//            val exception = task.exception
+//            if (task.isSuccessful){
+//                try {
+//                    val intent = Intent(this, MainActivity::class.java)
+//                    startActivity(intent)
+//                    val account = task.getResult(ApiException::class.java)
+//                    Log.d("SignInActivity", "firebaseAuthWIthGoogle:" + account.id)
+//                    firebaseAuthWithGoogle(account.idToken!!)
+//                } catch (e: ApiException){
+//                    Log.w("SignInActivity", "Google sign in failed", e)
+//                }
+//            }else{
+//                Log.w("SignInActivity", exception.toString())
+//            }
+//        }
+//    }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
@@ -95,8 +135,8 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("SignInActivity", "signInWithCredential:success")
-                    val profileIntent = Intent(this, MainActivity::class.java)
-                    startActivity(profileIntent)
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
                 } else {
                     Log.w("SignInActivity", "signInWithCredential:failure", task.exception)
                 }
@@ -121,6 +161,4 @@ class LoginActivity : AppCompatActivity() {
             isBound = false
         }
     }
-
-
 }

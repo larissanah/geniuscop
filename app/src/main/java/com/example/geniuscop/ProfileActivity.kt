@@ -8,6 +8,9 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.ServiceConnection
 import android.os.IBinder
+import android.view.View
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 
@@ -52,9 +55,14 @@ class ProfileActivity : AppCompatActivity() {
         val intent = Intent(this, MusicService::class.java)
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
 
-        binding.voltar.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
+//        val btnAbrirMenu = binding.voltar
+//        btnAbrirMenu.setOnClickListener {
+//            if (drawerLayout.visibility == View.GONE) {
+//                drawerLayout.visibility = View.VISIBLE
+//            } else {
+//                drawerLayout.visibility = View.GONE
+//            }
+//        }
     }
 
     override fun onStart() {

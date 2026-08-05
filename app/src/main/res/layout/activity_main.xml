@@ -15,31 +15,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-       <FrameLayout
+        <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" >
 
             <Button
                 android:id="@+id/abrirmenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:icon="@android:drawable/ic_menu_sort_by_size"
-                android:backgroundTint="@color/white"
                 android:layout_marginBottom="300dp"
-                />
+                android:backgroundTint="@color/white"
+                app:icon="@android:drawable/ic_menu_sort_by_size" />
 
-           <Button
-               android:id="@+id/btnStart"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="350dp"
-               android:layout_marginTop="176dp"
-               android:backgroundTint="#021162"
-               android:text="@string/iniciar"
-               android:gravity="center"
-               android:textSize="35sp" />
-       </FrameLayout>
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="350dp"
+                android:layout_marginTop="176dp"
+                android:backgroundTint="#021162"
+                android:gravity="center"
+                android:text="@string/iniciar"
+                android:textSize="35sp" />
+        </FrameLayout>
+
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"

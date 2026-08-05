@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
@@ -16,7 +17,6 @@ import kotlinx.coroutines.launch
 import com.example.geniuscop.databinding.FragmentGameBinding
 import kotlin.jvm.java
 import kotlin.time.Duration.Companion.milliseconds
-
 
 class GameFragment : Fragment() {
     private var mediaPlayer1: MediaPlayer? = null
@@ -40,11 +40,8 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         val intent = Intent(requireContext(), MusicService::class.java)
         requireContext().stopService(intent)
-
 
         val db = Room.databaseBuilder(
             requireContext().applicationContext,
@@ -64,11 +61,15 @@ class GameFragment : Fragment() {
         binding.buttonyellow.setOnClickListener { playerClick(2); mediaPlayer3?.start() }
         binding.buttonblue.setOnClickListener { playerClick(3); mediaPlayer4?.start() }
 
-        binding.voltar.setOnClickListener {
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            startActivity(intent)
-        }
-
+//        val btnAbrirMenu = binding.voltar
+//        val navView = binding.nav_view
+//        btnAbrirMenu.setOnClickListener {
+//            if (navView.visibility == View.GONE) {
+//                navView.visibility = View.VISIBLE
+//            } else {
+//                navView.visibility = View.GONE
+//            }
+//        }
     }
     private fun finalizarPartida(acertos: Int){
         lifecycleScope.launch {
@@ -77,6 +78,8 @@ class GameFragment : Fragment() {
                 data = System.currentTimeMillis()
             )
             partidaDao.inserir(partida)
+            val fragmentManager = GameoverFragment()
+            val fragmentTransaction = parentFragmentManager.beginTransaction()
         }
     }
 
@@ -106,7 +109,6 @@ class GameFragment : Fragment() {
             }
         }
     }
-
 
     fun startGame() {
         binding.btnStartRound.isEnabled = false
@@ -144,5 +146,6 @@ class GameFragment : Fragment() {
         binding.txtLevel.text = "Fim de jogo! Pontuação: $round"
         binding.btnStartRound.isEnabled = true
         finalizarPartida(round)
+
     }
 }
