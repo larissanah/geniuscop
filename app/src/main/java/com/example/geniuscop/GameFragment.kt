@@ -95,17 +95,17 @@ class GameFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.Main) {
             for (color in sequence) {
                 when(color) {
-                    0 -> binding.buttongreen.alpha = 0.5f
-                    1 -> binding.buttonred.alpha = 0.5f
-                    2 -> binding.buttonyellow.alpha = 0.5f
-                    3 -> binding.buttonblue.alpha = 0.5f
+                    0 -> binding.buttongreen.alpha = 1.5f
+                    1 -> binding.buttonred.alpha = 1.5f
+                    2 -> binding.buttonyellow.alpha = 1.5f
+                    3 -> binding.buttonblue.alpha = 1.5f
                 }
-                delay(300.milliseconds)
+                delay(200.milliseconds)
                 binding.buttongreen.alpha = 1f
                 binding.buttonred.alpha = 1f
                 binding.buttonyellow.alpha = 1f
                 binding.buttonblue.alpha = 1f
-                delay(500.milliseconds)
+                delay(200.milliseconds)
             }
         }
     }
