@@ -35,13 +35,27 @@ class ForgotActivity : AppCompatActivity() {
         setContentView(binding.root)
         firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.irLogin {
+        binding.irLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
         binding.button.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            if (validateEmail(binding.emailEt)){
+                FirebaseAuth.getInstance()
+                    .sendPasswordResetEmail(
+                        binding.emailEt.toString().trim())
+                    .addOnSuccessListener {
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    .addOnFailureListener {
+                        it.message?.Let
+                    }
+            } else{
+
+            }
+
         }
     }
 
